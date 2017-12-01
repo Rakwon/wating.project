@@ -1,0 +1,64 @@
+extends layout
+
+block content
+  .main-page
+    header#main-header
+      h1
+        img(src="images/main-icon.png", width="80", height="80", align="center")
+        | 대기인원 관리자 페이지
+    |         
+    #main-content1
+      article#currenttime
+        p.title 현재 시간
+        |                 
+        p#crttime.tvalue
+      |             
+      article#count
+        p.title 대기 인원
+        |                 
+        p#cntwaiting.tvalue
+      |             
+      article#expectedtime
+        p.title 예상 대기시간
+        |                 
+        p.tvalue
+          img(src="images/time.png", width="45", height="55", align="center")
+          | 30분
+      |             
+      article#camera
+        p.title 대기상황 보기
+        |                 
+        a.tvalue(href="./test2.html", target="_blank")
+          img(src="images/camera.png", width="65", height="60")
+    |         
+    #main-content2
+      #table
+        | table 부분
+      |             
+      #waiting
+        | 순번 : 
+        input#a1(type="text", size="3", name="a1")
+        |                 인원수 : 
+        input#a2(type="text", size="3", name="a2")
+        |                 전화번호 : 
+        input#a3(type="text", size="9", name="a3")
+        |                 
+        button(onclick="Add();") 예약
+        |                 
+        |                 
+        table#insertTable(width="96%", style="table-layout:fixed;")
+          tr(height="35")
+            th(width="10") 순번
+            |                         
+            th(width="10") 인원
+            |                         
+            th(width="35") 전화번호
+            |                         
+            th(width="15") 호출
+            |                         
+            th(width="15") 착석
+            |                         
+            th(width="15") 삭제
+    |         
+    footer#main-footer
+      p @Embedded Computing Term Project
