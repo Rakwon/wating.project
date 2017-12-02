@@ -33,39 +33,92 @@ block content
     |         
     #main-content2
       #table
-        | table 부분
+        table#seatTable(width="96%", height="100%", cellspacing="15;", style="table-layout:fixed;")
+          tr(height="25%")
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
+            |                         
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
+            |                         
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
+            |                         
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
+          |                     
+          tr(height="25%")
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
+            |                         
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
+            |                         
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
+            |                         
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
+          |                     
+          tr(height="25%")
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
+            |                         
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
+            |                         
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
+            |                         
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
+          |                     
+          tr(height="25%")
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
+            |                         
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
+            |                         
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
+            |                         
+            td
+              input.seatChoice(type="button", name="선택", value="선택", disabled="true", onclick="seatChoice(this);")
       |             
       #waiting
-        | 순번 : 
-        input#a1(type="text", size="3", name="a1")
-        |                 인원수 : 
-        input#a2(type="text", size="3", name="a2")
-        |                 전화번호 : 
-        input#a3(type="text", size="9", name="a3")
-        |                 
-        button(onclick="Add();") 예약
-        |                 
-        |                 
+        // 이건 db에서 대기 중인 사람들 관련 table
         table#insertTable(width="96%", style="table-layout:fixed;")
+          tr(height="35")
+            th(width="7") 순번
+            |                         
+            th(width="7") 인원
+            |                         
+            th(width="30") 전화번호
+            |                  
+            th(width="30") 메뉴
+            |                         
+            th(width="7") 호출
+            |                         
+            th(width="7") 착석
+            |                         
+            th(width="7") 삭제
+        // 이건 db에서 자리에 앉은 사람들 관련 table
+        table#outputTable(width="96%", style="table-layout:fixed;")
           tr(height="35")
             th(width="10") 순번
             |                         
             th(width="10") 인원
             |                         
-            th(width="35") 전화번호
-            |                         
-            th(width="15") 호출
-            |                         
-            th(width="15") 착석
-            |                         
-            th(width="15") 삭제
+            th(width="80") 메뉴
     |         
+    input#phone(type="text" name="phone")
+    br
+    input#menu(type="text" name="menu")
+    br
+    input#people(type="text" name="people")
+    br
+    button#connectionButton 전송
+
     footer#main-footer
       p @Embedded Computing Term Project
-    form(action="/api/queue" method="POST")
-      input(type="text" name="phone")
-      br
-      input(type="text" name="people")
-      br
-      input(type="submit")
-

@@ -56,13 +56,22 @@ body
     width: 54.5%;
     margin-right: 0.5%;
 }
-#insertTable
+#seatTable
+{
+    margin: 0 2% 0 2%;
+    text-align: center;
+}
+#seatTable p
+{
+    color: white;
+}
+#insertTable, #outputTable
 {
     margin: 2% 2% 2% 2%;
     text-align: center;
     border-collapse: collapse;
 }
-#insertTable th
+#insertTable th, #outputTable th
 {
     background: #4581EF;
     color: #ffffff;
@@ -105,4 +114,13 @@ body
 {
     color: #4581EF;
     text-align: center;
+}
+.menu
+{
+    height: 70%;
+    overflow: auto;
+}
+.btnFinish
+{
+    height: 30%;
 }
