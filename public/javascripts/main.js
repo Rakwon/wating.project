@@ -300,9 +300,11 @@ $(function(){
                 
             });
             
+            // 클릭하면 한줄 추가
             $('#connectionButton').bind('click', function(e){
                 console.log('asdsadas');
                 var data = {
+                    'id' : order,
                     'phone' : $('#phone').val(),
                     'people' : $('#people').val(),
                     'menu' : $('#menu').val()
@@ -313,10 +315,6 @@ $(function(){
         socket.on('disconnect', function(){
             console.log('소켓 연결이 끊겼습니다');
         });
-        
     }
-
     connectToServer();
-
-    
 });
