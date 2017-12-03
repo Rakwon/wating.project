@@ -263,6 +263,7 @@ function Finish(element)
     {
         if(table.rows[i].cells[0].textContent == id)
         {
+            goOut(id);
             table.rows[i].remove();
             break;
         }
@@ -273,15 +274,15 @@ function Finish(element)
     var row = td.parentElement.rowIndex;
     var col = td.cellIndex;
     td.innerHTML = "<input type='button' class='seatChoice' name='선택' value='선택' disabled='true' onclick='seatChoice(this);'>";
-}
+};
+
+let order = 1;
+let phone, 
+    menu,
+    people,
+    socket;
 
 $(function(){
-
-    let order = 1;
-    let phone, 
-        menu,
-        people,
-        socket;
 
     function connectToServer(){
         var opt = { 'forceNew' : true };
@@ -297,7 +298,8 @@ $(function(){
             });
 
             socket.on('successDequeue', function(message){
-                
+                if(message.result)
+                    console.log('success dqeue');
             });
             
             // 클릭하면 한줄 추가
@@ -316,5 +318,10 @@ $(function(){
             console.log('소켓 연결이 끊겼습니다');
         });
     }
+
     connectToServer();
 });
+
+function goOut(id){
+    socket.emit('dequeue', {'id' : id});
+};
