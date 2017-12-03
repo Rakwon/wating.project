@@ -291,12 +291,15 @@ $(function(){
         socket.on('connect', function(){
             console.log('소켓이 연결 되었 습니다!!');
             
-            socket.on('message', function(message){
+            socket.on('successEnqueue', function(message){
                 message.order = order++;
                 Add(message);
             });
+
+            socket.on('successDequeue', function(message){
+                
+            });
             
-           
             $('#connectionButton').bind('click', function(e){
                 console.log('asdsadas');
                 var data = {
@@ -304,7 +307,7 @@ $(function(){
                     'people' : $('#people').val(),
                     'menu' : $('#menu').val()
                   };
-                socket.emit('message', data);
+                socket.emit('enqueue', data);
             });
         });
         socket.on('disconnect', function(){

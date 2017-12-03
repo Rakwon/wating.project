@@ -15,7 +15,6 @@ let app = express();
 mongoose.connect('mongodb://localhost:27017/', function(error){
   if(error)
     return console.log('mongoose connection error : ' +error);
-
     return console.log('connection ok!');
 });
 

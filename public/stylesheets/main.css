@@ -65,6 +65,9 @@ body
 {
     color: white;
 }
+#outputTable{
+    display: none;
+}
 #insertTable, #outputTable
 {
     margin: 2% 2% 2% 2%;

@@ -5,7 +5,7 @@
  */
 
 let app = require('../app');
-let socketio = require('socket.io');
+let socketioInitializer = require('../lib/socketHandler');
 let debug = require('debug')('waiting:server');
 let http = require('http');
 
@@ -21,19 +21,19 @@ app.set('port', port);
  */
 
 let server = http.createServer(app);
-let io = socketio.listen(server);
+socketioInitializer(server);
 
-io.sockets.on('connection', function(socket){
-  console.log('soketio 가 연결되었습니다');
-  console.log('connection info ; ' + socket.request.connection._peername);
+// io.sockets.on('connection', function(socket){
+//   console.log('soketio 가 연결되었습니다');
+//   console.log('connection info ; ' + socket.request.connection._peername);
   
-  socket.on('message', function(message){
-    console.log('이베트를 받았습니다');
-    console.log(message);
-    io.sockets.emit('message', message);
+//   socket.on('message', function(message){
+//     console.log('이베트를 받았습니다');
+//     console.log(message);
+//     io.sockets.emit('message', message);
 
-  });
-});
+//   });
+// });
 /**
  * Listen on provided port, on all network interfaces.
  */
