@@ -42,7 +42,7 @@ function Add(set) {
     var td1 = document.createElement("td");
     td1.setAttribute("width", "7"); // 넓이
     td1.setAttribute("bgColor", "#f1f5fd"); // 배경색
-    td1.innerText = set.order;
+    td1.innerText = set.id;
 
     var td2 = document.createElement("td");
     td2.setAttribute("width", "7"); // 넓이
@@ -156,6 +156,8 @@ function Call(element)
 function Delete(element)
 {
     var tr = element.parentElement.parentElement;
+    console.log(tr.cells[0]);
+    goOut(tr.cells[0].textContent);
     tr.remove();
     CountWaiting();
 }
@@ -284,14 +286,21 @@ let phone,
 
 $(function(){
 
-    function connectToServer(){
+    function connectToServer(callback){
         var opt = { 'forceNew' : true };
         var url = 'http://localhost:3000';
         socket = io.connect(url, opt);
-    
+        
         socket.on('connect', function(){
             console.log('소켓이 연결 되었 습니다!!');
             
+            socket.on('successInit', function(message){
+                message.forEach(function(item, index){
+                    console.log(item);
+                    Add(item);
+                });
+            });
+
             socket.on('successEnqueue', function(message){
                 message.order = order++;
                 Add(message);
@@ -301,25 +310,17 @@ $(function(){
                 if(message.result)
                     console.log('success dqeue');
             });
-            
-            // 클릭하면 한줄 추가
-            $('#connectionButton').bind('click', function(e){
-                console.log('asdsadas');
-                var data = {
-                    'id' : order,
-                    'phone' : $('#phone').val(),
-                    'people' : $('#people').val(),
-                    'menu' : $('#menu').val()
-                  };
-                socket.emit('enqueue', data);
-            });
         });
         socket.on('disconnect', function(){
             console.log('소켓 연결이 끊겼습니다');
         });
-    }
 
-    connectToServer();
+        callback();
+    };
+
+    connectToServer(function(){
+        socket.emit('init', {'data' : ''});
+    });
 });
 
 function goOut(id){

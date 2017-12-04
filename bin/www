@@ -5,7 +5,7 @@
  */
 
 let app = require('../app');
-let socketioInitializer = require('../lib/socketHandler');
+let socketHandler = require('../lib/socketHandler');
 let debug = require('debug')('waiting:server');
 let http = require('http');
 
@@ -21,7 +21,7 @@ app.set('port', port);
  */
 
 let server = http.createServer(app);
-socketioInitializer(server);
+socketHandler.initialize(server);
 
 // io.sockets.on('connection', function(socket){
 //   console.log('soketio 가 연결되었습니다');
