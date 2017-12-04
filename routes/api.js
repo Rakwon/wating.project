@@ -52,9 +52,9 @@ router.get('/waiting', function(req, res, next){
 
       console.dir(wating);
       io.sockets.emit('successEnqueue', msg);
+
   });
-  
-  res.json({'result' : true});
+  res.redirect('/');
 });
 
 module.exports = router;

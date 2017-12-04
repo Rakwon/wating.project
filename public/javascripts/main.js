@@ -156,7 +156,6 @@ function Call(element)
 function Delete(element)
 {
     var tr = element.parentElement.parentElement;
-    console.log(tr.cells[0]);
     goOut(tr.cells[0].textContent);
     tr.remove();
     CountWaiting();
@@ -283,22 +282,25 @@ let phone,
     menu,
     people,
     socket;
-
+let init = false;
 $(function(){
 
     function connectToServer(callback){
         var opt = { 'forceNew' : true };
-        var url = 'http://localhost:3000';
+        var url = 'http://waiting.kro.kr';
         socket = io.connect(url, opt);
         
         socket.on('connect', function(){
             console.log('소켓이 연결 되었 습니다!!');
             
             socket.on('successInit', function(message){
-                message.forEach(function(item, index){
-                    console.log(item);
-                    Add(item);
-                });
+                if(!init){
+                    init = true;
+                    message.forEach(function(item, index){
+                        console.log(item);
+                        Add(item);
+                    });
+                }
             });
 
             socket.on('successEnqueue', function(message){
